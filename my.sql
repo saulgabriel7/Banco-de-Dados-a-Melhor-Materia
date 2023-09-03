@@ -115,3 +115,10 @@ SELECT livros.titulo
 FROM livros
 INNER JOIN autores ON livros.autor_id = autores.id
 WHERE autores.nome = 'J.K. Rowling';
+
+/* 4-Encontre todos os alunos matriculados em 'Engenharia de Software'. */
+
+SELECT alunos.nome
+FROM aula_db_exemplos.alunos
+INNER JOIN aula_db_exemplos.matriculas ON alunos.id = matriculas.aluno_id
+WHERE matriculas.curso = 'Engenharia de Software';
