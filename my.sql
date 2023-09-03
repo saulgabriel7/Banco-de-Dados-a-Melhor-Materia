@@ -102,3 +102,9 @@ CREATE TABLE matriculas (
 SELECT livros.titulo, autores.nome AS autor 
 FROM livros
 JOIN autores ON livros.autor_id = autores.id;
+
+/* 2-Selecione todos os nomes de autores nascidos antes de 1900. */
+
+SELECT nome
+FROM autores
+WHERE YEAR(nascimento) < 1900;
