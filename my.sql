@@ -152,3 +152,11 @@ SELECT produto, AVG(receita) AS media_receita
 FROM vendas
 GROUP BY produto
 ORDER BY produto;
+
+/*9-Encontre os produtos que geraram uma receita total superior a $10.000.*/
+
+SELECT produto, SUM(receita) AS receita_total
+FROM vendas
+GROUP BY produto
+HAVING SUM(receita) > 10000
+ORDER BY receita_total DESC;
