@@ -169,3 +169,9 @@ INNER JOIN livros ON autores.id = livros.autor_id
 GROUP BY autores.nome
 HAVING COUNT(livros.id) > 2
 ORDER BY total_de_livros DESC;
+
+/* 11-Junte as tabelas livros e autores e selecione todos os livros com seus respectivos autores. */
+
+SELECT livros.titulo AS livro, autores.nome AS autor
+FROM livros
+INNER JOIN autores ON livros.autor_id = autores.id;
