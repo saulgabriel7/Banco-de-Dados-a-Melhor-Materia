@@ -213,3 +213,8 @@ LEFT JOIN livros ON autores.id = livros.autor_id
 GROUP BY autores.nome
 ORDER BY total_de_livros DESC
 LIMIT 1;
+
+/* 17-Determine o produto que gerou a menor receita. */
+
+SELECT produto, MIN(receita) AS menor_receita
+FROM vendas;
