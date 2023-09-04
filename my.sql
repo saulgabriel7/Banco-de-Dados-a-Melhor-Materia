@@ -233,3 +233,11 @@ FROM alunos
 LEFT JOIN matriculas ON alunos.id = matriculas.aluno_id
 GROUP BY alunos.nome
 ORDER BY aluno;
+
+/* 20-Identifique o produto mais vendido com base na quantidade de transações (não na receita). */
+
+SELECT produto, COUNT(*) AS total_de_transacoes
+FROM vendas
+GROUP BY produto
+ORDER BY total_de_transacoes DESC
+LIMIT 1;
