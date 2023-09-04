@@ -129,3 +129,11 @@ SELECT produto, SUM(receita) AS receita_total
 FROM vendas
 GROUP BY produto
 ORDER BY receita_total DESC;
+
+/* 6-Determine o número total de livros por autor. */
+
+SELECT autores.nome AS autor, COUNT(livros.id) AS total_de_livros
+FROM autores
+LEFT JOIN livros ON autores.id = livros.autor_id
+GROUP BY autores.nome
+ORDER BY autor;
