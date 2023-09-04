@@ -122,3 +122,10 @@ SELECT alunos.nome
 FROM aula_db_exemplos.alunos
 INNER JOIN aula_db_exemplos.matriculas ON alunos.id = matriculas.aluno_id
 WHERE matriculas.curso = 'Engenharia de Software';
+
+/*5-Calcule a receita total gerada por cada produto. */
+
+SELECT produto, SUM(receita) AS receita_total
+FROM vendas
+GROUP BY produto
+ORDER BY receita_total DESC;
