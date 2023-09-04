@@ -182,3 +182,9 @@ SELECT alunos.nome AS aluno, matriculas.curso
 FROM alunos
 LEFT JOIN matriculas ON alunos.id = matriculas.aluno_id
 ORDER BY aluno, curso;
+
+/* 13-Usando LEFT JOIN, selecione todos os autores e seus livros, incluindo autores que não têm livros publicados */
+
+SELECT autores.nome AS autor, IFNULL(livros.titulo, 'Nenhum livro publicado') AS livro
+FROM autores
+LEFT JOIN livros ON autores.id = livros.autor_id;
