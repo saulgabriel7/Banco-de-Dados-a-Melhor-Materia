@@ -96,6 +96,8 @@ CREATE TABLE matriculas (
     FOREIGN KEY (aluno_id) REFERENCES alunos(id)
 );
 
+/*TUDO*/
+
 
 /*1-Selecione todos os títulos de livros na tabela livros.  */     
 
