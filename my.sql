@@ -175,3 +175,10 @@ ORDER BY total_de_livros DESC;
 SELECT livros.titulo AS livro, autores.nome AS autor
 FROM livros
 INNER JOIN autores ON livros.autor_id = autores.id;
+
+/*12-Liste todos os alunos e os cursos em que estão matriculados.*/
+
+SELECT alunos.nome AS aluno, matriculas.curso
+FROM alunos
+LEFT JOIN matriculas ON alunos.id = matriculas.aluno_id
+ORDER BY aluno, curso;
