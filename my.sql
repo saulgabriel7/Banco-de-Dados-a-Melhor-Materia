@@ -225,3 +225,11 @@ SELECT autores.nome AS autor, COUNT(livros.id) AS total_livros, COUNT(livros.id)
 FROM autores
 LEFT JOIN livros ON autores.id = livros.autor_id
 GROUP BY autores.nome;
+
+/* 19-Determine o número total de matrículas para cada aluno. */
+
+SELECT alunos.nome AS aluno, COUNT(matriculas.id) AS total_de_matriculas
+FROM alunos
+LEFT JOIN matriculas ON alunos.id = matriculas.aluno_id
+GROUP BY alunos.nome
+ORDER BY aluno;
