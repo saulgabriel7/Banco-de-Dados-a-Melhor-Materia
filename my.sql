@@ -218,3 +218,10 @@ LIMIT 1;
 
 SELECT produto, MIN(receita) AS menor_receita
 FROM vendas;
+
+/* 18-Liste os autores e a receita total gerada com base nos livros vendidos, assumindo que cada livro gere uma receita fixa de $20 .*/
+
+SELECT autores.nome AS autor, COUNT(livros.id) AS total_livros, COUNT(livros.id) * 20 AS receita_total
+FROM autores
+LEFT JOIN livros ON autores.id = livros.autor_id
+GROUP BY autores.nome;
