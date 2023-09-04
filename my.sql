@@ -196,3 +196,11 @@ FROM cursos
 RIGHT JOIN matriculas ON cursos.id = matriculas.curso_id
 RIGHT JOIN alunos ON matriculas.aluno_id = alunos.id
 ORDER BY curso, aluno;
+
+/* 15-Utilizando INNER JOIN, mostre somente os alunos e cursos que possuem correspondência mútua. */
+
+SELECT alunos.nome AS aluno, cursos.nome AS curso
+FROM alunos
+INNER JOIN matriculas ON alunos.id = matriculas.aluno_id
+INNER JOIN cursos ON matriculas.curso_id = cursos.id
+ORDER BY aluno, curso;
