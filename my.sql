@@ -188,3 +188,11 @@ ORDER BY aluno, curso;
 SELECT autores.nome AS autor, IFNULL(livros.titulo, 'Nenhum livro publicado') AS livro
 FROM autores
 LEFT JOIN livros ON autores.id = livros.autor_id;
+
+/* 14-Com RIGHT JOIN, liste todos os cursos e alunos, mesmo que o curso não tenha nenhum aluno matriculado.*/
+
+SELECT cursos.nome AS curso, alunos.nome AS aluno
+FROM cursos
+RIGHT JOIN matriculas ON cursos.id = matriculas.curso_id
+RIGHT JOIN alunos ON matriculas.aluno_id = alunos.id
+ORDER BY curso, aluno;
