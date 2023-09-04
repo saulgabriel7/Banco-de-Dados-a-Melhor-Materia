@@ -204,3 +204,12 @@ FROM alunos
 INNER JOIN matriculas ON alunos.id = matriculas.aluno_id
 INNER JOIN cursos ON matriculas.curso_id = cursos.id
 ORDER BY aluno, curso;
+
+/* 16-Descubra qual autor tem a maior quantidade de livros publicados. */
+
+SELECT autores.nome AS autor, COUNT(livros.id) AS total_de_livros
+FROM autores
+LEFT JOIN livros ON autores.id = livros.autor_id
+GROUP BY autores.nome
+ORDER BY total_de_livros DESC
+LIMIT 1;
