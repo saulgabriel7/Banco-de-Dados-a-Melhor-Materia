@@ -1,0 +1,35 @@
+/*6*/
+
+
+DELIMITER //
+
+CREATE PROCEDURE sp_TitulosPorCategoria(IN categoria_nome VARCHAR(100))
+BEGIN
+    DECLARE done INT DEFAULT 0;
+    DECLARE livro_titulo VARCHAR(255);
+    DECLARE cur CURSOR FOR
+        SELECT Livro.Titulo
+        FROM Livro
+        INNER JOIN Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
+        WHERE Categoria.Nome = categoria_nome;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    OPEN cur;
+
+    FETCH cur INTO livro_titulo;
+
+    IF done = 0 THEN
+        SELECT 'Títulos dos Livros na Categoria ' AS 'Categoria', categoria_nome AS 'Nome da Categoria';
+        SELECT 'Título do Livro' AS 'Título';
+        REPEAT
+            SELECT livro_titulo AS 'Título';
+            FETCH cur INTO livro_titulo;
+        UNTIL done = 1 END REPEAT;
+    ELSE
+        SELECT 'Nenhum livro encontrado na categoria ' AS 'Categoria', categoria_nome AS 'Nome da Categoria';
+    END IF;
+
+    CLOSE cur;
+END //
+
+DELIMITER ;
