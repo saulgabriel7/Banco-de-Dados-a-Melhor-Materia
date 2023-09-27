@@ -1,0 +1,24 @@
+
+/*4*/
+
+DELIMITER //
+
+CREATE PROCEDURE sp_VerificarLivrosCategoria(IN categoria_nome VARCHAR(100), OUT categoria_tem_livros BOOLEAN)
+BEGIN
+    DECLARE categoria_id INT;
+    
+    SELECT Categoria_ID INTO categoria_id
+    FROM Categoria
+    WHERE Nome = categoria_nome;
+    
+    IF categoria_id IS NOT NULL THEN
+        SELECT 1 INTO categoria_tem_livros
+        FROM Livro
+        WHERE Categoria_ID = categoria_id
+        LIMIT 1;
+    ELSE
+        SELECT 0 INTO categoria_tem_livros;
+    END IF;
+END //
+
+DELIMITER ;
