@@ -1,0 +1,28 @@
+/*7*/
+
+DELIMITER //
+
+CREATE PROCEDURE sp_AdicionarLivro(
+    IN livro_titulo VARCHAR(255),
+    IN editora_id INT,
+    IN ano_publicacao INT,
+    IN numero_paginas INT,
+    IN categoria_id INT,
+    OUT resultado VARCHAR(255)
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SET resultado = 'Erro: Não foi possível adicionar o livro. Verifique se o título já existe.';
+    END;
+
+    START TRANSACTION;
+    INSERT INTO Livro (Titulo, Editora_ID, Ano_Publicacao, Numero_Paginas, Categoria_ID)
+    VALUES (livro_titulo, editora_id, ano_publicacao, numero_paginas, categoria_id);
+    COMMIT;
+    
+    SET resultado = 'Livro adicionado com sucesso.';
+END //
+
+DELIMITER ;
