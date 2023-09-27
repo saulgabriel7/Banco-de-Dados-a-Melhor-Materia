@@ -1,0 +1,15 @@
+/*8*/
+
+DELIMITER //
+
+CREATE PROCEDURE sp_AutorMaisAntigo(OUT autor_mais_antigo_nome VARCHAR(255))
+BEGIN
+    SELECT CONCAT(Nome, ' ', Sobrenome) INTO autor_mais_antigo_nome
+    FROM Autor
+    WHERE Data_Nascimento = (
+        SELECT MIN(Data_Nascimento)
+        FROM Autor
+    );
+END //
+
+DELIMITER ;
