@@ -1,0 +1,28 @@
+/*9*/
+
+-- O DELIMITER serve para mudar o jeito que o SQL interpreta os comandos.
+-- Aqui, estamos trocando o ponto e vírgula (;) por //, que é usado para criar procedures.
+-- Isso evita confusões com os pontos e vírgulas dentro da procedure.
+
+DELIMITER //
+
+-- Criação da Procedure sp_AutorMaisAntigo
+-- Essa Produce, vai nos dar o nome completo do autor mais antigo com base na data de nascimento.
+-- O nome completo vai ser colocado em uma variável chamada autor_mais_antigo_nome.
+
+CREATE PROCEDURE sp_AutorMaisAntigo(OUT autor_mais_antigo_nome VARCHAR(255))
+BEGIN
+    -- Agora selecionamos o nome e sobrenome do autor mais antigo.
+    -- Para fazer isso, olhamos a data de nascimento de todos os autores.
+    -- Usei uma subconsulta para encontrar a data de nascimento mais antiga de todos eles.
+
+    SELECT CONCAT(Nome, ' ', Sobrenome) INTO autor_mais_antigo_nome
+    FROM Autor
+    WHERE Data_Nascimento = (
+        SELECT MIN(Data_Nascimento)
+        FROM Autor
+    );
+END //
+
+-- Depois de terminar a procedure, voltamos ao jeito normal de usar ponto e vírgula (;).
+DELIMITER ;
